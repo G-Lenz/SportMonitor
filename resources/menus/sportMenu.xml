@@ -1,0 +1,16 @@
+<resources>
+	<menu id="SportMenu">
+	    <menu-item id="walk">@Strings.Walk</menu-item>
+	    <menu-item id="hike">@Strings.Hike</menu-item>
+		<menu-item id="mntn">@Strings.Mountaineering</menu-item>
+	    <menu-item id="climb">@Strings.Climb</menu-item>
+	    <menu-item id="run">@Strings.Run</menu-item>
+	    <menu-item id="trail">@Strings.TrailRun</menu-item>
+		<menu-item id="mtb">@Strings.MntnBike</menu-item>
+		<menu-item id="bike">@Strings.Bike</menu-item>
+		<menu-item id="ski">@Strings.Skiing</menu-item>
+		<menu-item id="skit">@Strings.Skitour</menu-item>
+		<menu-item id="training">@Strings.Training</menu-item>
+		<menu-item id="indClimb">@Strings.IndoorClimb</menu-item>
+	</menu>
+</resources>

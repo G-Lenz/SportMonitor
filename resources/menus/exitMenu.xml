@@ -1,0 +1,8 @@
+<resources>
+	<menu id="ExitMenu" title="@Strings.Exit">
+	    <menu-item id="back">@Strings.back</menu-item>
+	    <menu-item id="save">@Strings.Save</menu-item>
+	    <menu-item id="discard">@Strings.discard</menu-item>
+	</menu>
+</resources>
+

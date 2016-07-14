@@ -1,0 +1,41 @@
+<resources>
+	<strings>
+	    <string id="AppName">SMT</string>
+	    <string id="Yes">Ja</string>
+	    <string id="No">Nein</string>
+	    <string id="Exit">Ende</string>
+	    
+	    <string id="back">Zurück</string>
+	    <string id="discard">Verwerfen</string>
+	    <string id="Save">Speichern</string>
+	    <string id="byebye">bis bald</string>
+	    
+	    <string id="Sound">Sound</string>
+	    <string id="Light">Licht</string>
+	    <string id="Vibration">Vibration</string>
+	    <string id="SaveSportSel">SaveSportSel</string>
+
+		<string id="rhr">RuheHF</string>
+		<string id="AutoBattOff">AutoBattOff</string>
+		<string id="showPace">showPace</string>
+
+	    <string id="Walk">Gehen</string>
+	    <string id="Hike">Wandern</string>
+	    <string id="Mountaineering">Bergsteigen</string>
+	    <string id="Climb">Klettern</string>
+	    <string id="Run">Laufen</string>
+	    <string id="TrailRun">TrailRun</string>
+	    <string id="MntnBike">MntnBike</string>
+	    <string id="Bike">Bike</string>
+	    <string id="Skiing">Skifahren</string>
+	    <string id="Skitour">Skitour</string>
+	    <string id="Training">Training</string>
+	    <string id="IndoorClimb">Hallenklettern</string>	    
+
+	    <string id="Sunset">Sonnenunterg</string>
+	    <string id="Sunrise">Sonnenaufg</string>
+	    <string id="HrZones">Hf-Zonen</string>
+	    
+	    
+	</strings>
+</resources>
