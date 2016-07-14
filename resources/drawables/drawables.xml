@@ -1,0 +1,4 @@
+<drawables>
+    <bitmap id="LauncherIcon" filename="icon40.png" />
+	<bitmap id="Icon50" filename="icon50.png" />
+</drawables>

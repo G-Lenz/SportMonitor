@@ -1,0 +1,8 @@
+<resources>
+	<menu id="SettingsMenu">
+	    <menu-item id="Sound">@Strings.Sound</menu-item>
+		<menu-item id="Vibration">@Strings.Vibration</menu-item>
+	    <menu-item id="Light">@Strings.Light</menu-item>
+	    <menu-item id="SaveSport">@Strings.SaveSportSel</menu-item>
+	</menu>
+</resources>

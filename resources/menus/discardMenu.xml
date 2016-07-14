@@ -1,0 +1,7 @@
+<resources>
+	<menu id="DiscardMenu" title="@Strings.discard">
+	    <menu-item id="back">@Strings.back</menu-item>
+	    <menu-item id="discard">@Strings.discard</menu-item>
+	</menu>
+</resources>
+
