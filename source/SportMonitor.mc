@@ -14,7 +14,7 @@ using Toybox.Math as Math;
 
 var session = null;
 
-var Version = "0.604";
+var Version = "0.604_test";
 
 var sensorInfo = null;
 var activityInfo = null;
@@ -226,7 +226,6 @@ function momentToString(moment) {
 				hour = 12;
 			}
 			text = hour.format("%02d") + ":" + tinfo.min.format("%02d");
-			// wtf... get used to 24 hour format...
 			if (tinfo.hour < 12 || tinfo.hour == 24) {
 				text = text + " AM";
 			} else {
@@ -248,10 +247,7 @@ function momentToString(moment) {
 
 function getSettings(){	
 		var lrhr = App.getApp().getProperty("rhr");
-	    if (lrhr == null){
-			//postMsg("RHR == null");
-	    }
-	    else {
+	    if (lrhr != null){
 	    	postMsg(Lang.format("RHR: $1$",[lrhr]));
 	    	RHR = lrhr;
    		}
@@ -349,8 +345,6 @@ class SportDef {
 		lSport = ns;
 	}
 	function getSport(){
-		//postMsg("getSport");
-		//PageSelect = 0;
 		if (lSport == 1){
 			return [Ui.loadResource(Rez.Strings.Walk), Record.SPORT_WALKING,Record.SUB_SPORT_GENERIC,lSport];
 		}
@@ -364,19 +358,15 @@ class SportDef {
 			return [Ui.loadResource(Rez.Strings.Mountaineering), Record.SPORT_MOUNTAINEERING,Record.SUB_SPORT_GENERIC,lSport];
 		}
 		else if (lSport == 5){
-			//PageSelect = 2;
 			return [Ui.loadResource(Rez.Strings.Run), Record.SPORT_RUNNING,Record.SUB_SPORT_GENERIC,lSport];
 		}
 		else if (lSport == 6){
-			//PageSelect = 2;
 			return [Ui.loadResource(Rez.Strings.TrailRun), Record.SPORT_RUNNING,Record.SUB_SPORT_TRAIL,lSport];
 		}
 		else if (lSport == 7){
-			//PageSelect = 3;
 			return [Ui.loadResource(Rez.Strings.MntnBike), Record.SPORT_CYCLING,Record.SUB_SPORT_MOUNTAIN,lSport];
 		}
 		else if (lSport == 8){
-			//PageSelect = 3;
 			return [Ui.loadResource(Rez.Strings.Bike), Record.SPORT_CYCLING,Record.SUB_SPORT_GENERIC,lSport];
 		}
 		else if (lSport == 9){
@@ -394,7 +384,6 @@ class SportDef {
 		else{
 			return ["Walk", Record.SPORT_WALKING,Record.SUB_SPORT_GENERIC,lSport];
 		}
-		//session = Record.createSession({:name=>"Walk", :sport=>Record.SPORT_WALKING});
 	}
 }
 	
