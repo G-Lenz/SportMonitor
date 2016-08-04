@@ -716,14 +716,12 @@ class SportMonitor extends App.AppBase {
      		//postMsg(Lang.format("dispDist: $1$",[dispDist]));
      	}
 
-     	if (speed == null or speed <= 0) {
-     		//postMsg("speed is 0");
-     		//speed = 0.0001;	//[m/s]
+     	if (speed == null or speed <= 0.0) {
      		speed = 0;	//[m/s]
      		dispSpeed = "0";
-     		dispPace = "0";
-     		
+     		dispPace = "0";     		
      	} else {
+     	 	speed = speed + 0.0001; //Prevent div by 0 
      		//postMsg(Lang.format("speed: $1$",[speed]));
      		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().paceUnits){
 	     		speed = speed * 3.6; // [km/h]  
@@ -737,16 +735,16 @@ class SportMonitor extends App.AppBase {
 				dispSpeed = speed.format("%d");
 			} else {
 	     		dispSpeed = speed.format("%1.1f");
-	     	}
-    		
+	     	}    		
      	} 
 
-     	if (avgSpeed == null or avgSpeed <= 0){
+     	if (avgSpeed == null or avgSpeed <= 0.0){
      		dispAvgSpeed = "0";
      		dispAvgPace = "0";
      		avgSpeed = 0;
      	}
      	else{
+     		avgSpeed = avgSpeed + 0.0001; //Prevent div by 0 
      		//postMsg(Lang.format("AvgSpeed: $1$",[avgSpeed]));
      		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().paceUnits){
 	     		dispAvgSpeed = (avgSpeed*3.6).format("%1.1f");// [km/h]

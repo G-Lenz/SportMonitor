@@ -25,19 +25,19 @@ class SMmainView extends Ui.View {
      	strHRzones = Ui.loadResource(Rez.Strings.HrZones);
      	strSunset = Ui.loadResource(Rez.Strings.Sunset);
      	strSunrise = Ui.loadResource(Rez.Strings.Sunrise);
+     	hrGraph = new HRGraph([RHR,z1bpm,z2bpm,z3bpm,z4bpm,z5bpm,maxHR]);
     }
 
     function onHide() {
-    	hrGraph = null;
-    	postMsg("mainView onHide()");
+    	//hrGraph = null;
+    	//postMsg("mainView onHide()");
     }
 
     //! Restore the state of the app and prepare the view to be shown.
     function onShow() {
-    	if(session != null){
-    		postMsg("mainView onShow()");
-    		hrGraph = new HRGraph([RHR,z1bpm,z2bpm,z3bpm,z4bpm,z5bpm,maxHR]);
-    	}
+    	//if(session != null){
+    		//postMsg("mainView onShow()");
+    	//}
     }
        	
 //!-----------------------------------------------------------------
