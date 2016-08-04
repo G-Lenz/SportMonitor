@@ -376,17 +376,17 @@ class SMmainView extends Ui.View {
         	perzPerHour = ((startBatt-batt)/(duration/60.0));
         }
         perzPerHour = perzPerHour.format("%2.2f");
-        dc.drawText(20, 43, Gfx.FONT_XTINY, Lang.format("Sport: $1$",[Sport.getSport()[0]]), Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(24, 43, Gfx.FONT_XTINY, Lang.format("Sport: $1$",[Sport.getSport()[0]]), Gfx.TEXT_JUSTIFY_LEFT);
         
-        dc.drawText(15, 60, Gfx.FONT_XTINY, Lang.format("Batt: $1$ -> $2$, $3$min, $4$%/hr",[startBatt.format("%2.1f"),batt.format("%2.1f"),duration,perzPerHour]), Gfx.TEXT_JUSTIFY_LEFT);    
+        dc.drawText(15, 60, Gfx.FONT_XTINY, Lang.format("Batt: $1$ -> $2$, $3$min, $4$%/hr",[startBatt.format("%i"),batt.format("%i"),duration,perzPerHour]), Gfx.TEXT_JUSTIFY_LEFT);    
 	    var pos = null;
 	    if (position != null and position.position != null){
 	    	pos = position.position.toGeoString(Position.GEO_DEG);
 	    }
 	    if (pos!= null && acc > 1){
-	    	dc.drawText(7, 80, Gfx.FONT_XTINY, Lang.format("Pos: $1$",[pos]), Gfx.TEXT_JUSTIFY_LEFT);
+	    	dc.drawText(10, 80, Gfx.FONT_XTINY, Lang.format("Pos: $1$",[pos]), Gfx.TEXT_JUSTIFY_LEFT);
 	    }else{
-	    	dc.drawText(7, 80, Gfx.FONT_XTINY, Lang.format("Pos: $1$",["..."]), Gfx.TEXT_JUSTIFY_LEFT);
+	    	dc.drawText(10, 80, Gfx.FONT_XTINY, Lang.format("Pos: $1$",["- - -"]), Gfx.TEXT_JUSTIFY_LEFT);
 	    }
         if (sunset != null && sunset != 0){
         	dc.drawText(43, 120, Gfx.FONT_XTINY, Lang.format("$1$: $2$",[strSunset, sunset]), Gfx.TEXT_JUSTIFY_LEFT);

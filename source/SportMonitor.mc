@@ -138,7 +138,7 @@ function addLap(){
 		//}
 		LapsDone = 5;  
 	}
-	var i = 0;
+	var i = 1;
 	if (LapsDone > 0){
 		i = LAPs[LapsDone-1][0]+1;
 	}	
@@ -149,10 +149,8 @@ function addLap(){
 }
 function getLap(lap){
 	if (lap == 0){
-		var ln = "";
-		if (overrun > 0){
-			ln = "-";
-		}else{
+		var ln = 0;
+		if (overrun == 0){
 			ln = LAPs[lap][0];
 		}
 		return Lang.format("$1$: $2$, $3$, $4$",[ln,timestr(LAPs[lap][1]), convertDistance(LAPs[lap][2]), convertElevation(LAPs[lap][3]) ]);
