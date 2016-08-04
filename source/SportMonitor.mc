@@ -146,14 +146,67 @@ function addLap(){
 	LapsDone = LapsDone+1; 
 }
 function getLap(lap){
-	//TODO: UNITS, catch null
 	if (lap == 0){
-		return Lang.format("$1$: $2$, $3$, $4$",[LAPs[lap][0],timestr(LAPs[lap][1]),(LAPs[lap][2]/1000.0).format("%1.1f"),LAPs[lap][3].format("%i")]);
+		return Lang.format("$1$: $2$, $3$, $4$",[LAPs[lap][0],timestr(LAPs[lap][1]), convertDistance(LAPs[lap][2]), convertElevation(LAPs[lap][3]) ]);
 	}else{
-		return Lang.format("$1$: $2$, $3$, $4$",[LAPs[lap][0],timestr(LAPs[lap][1]-LAPs[lap-1][1]),((LAPs[lap][2]-LAPs[lap-1][2])/1000.0).format("%1.1f"),(LAPs[lap][3]-LAPs[lap-1][3]).format("%i")]);
+		return Lang.format("$1$: $2$, $3$, $4$",[LAPs[lap][0],timestr(LAPs[lap][1]-LAPs[lap-1][1]),  convertDistance(LAPs[lap][2]-LAPs[lap-1][2]), convertElevation(LAPs[lap][3]-LAPs[lap-1][3]) ]);
 	}
 }
 
+//Convert Speed to selected unit
+function convertSpeed(speed){ //[m/s]
+	var outSpeed = 0;
+	var outPace = 0;
+
+    if (speed == null or speed <= 0.0){
+		outSpeed = "0";
+     	outPace = "0";
+     }
+     else{
+     	speed = speed + 0.0001; //Prevent div by 0 
+		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().paceUnits){
+	    	outSpeed = (speed*3.6);// [km/h]
+	 		outPace = (60/(speed*3.6)).format("%1.1f"); //[min/km]  
+	 	}else{
+	 		outSpeed = (speed*2.2369);// [mls/h]
+	 		outPace = (60/(speed*2.2369)).format("%1.1f"); //[min/mls]
+	 	}
+	 	if (outSpeed > 99.0){
+			outSpeed = outSpeed.format("%d");
+		} else {
+			outSpeed = outSpeed.format("%1.1f");
+	   	}    
+   	}
+ 	return [outSpeed,outPace];
+}
+     		
+function convertElevation(elev){
+     	if (elev == null){
+     		elev = "0";
+     	}else{
+	 		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().elevationUnits){
+	 			elev = elev.format("%i"); //m
+	 		}else{
+	 			elev = (elev * 3.28084).format("%i"); //feet
+	 		}
+ 		}
+ 		return elev;
+}
+
+function convertDistance(dist){
+     	if (dist == null){
+     		disp = "0";
+     	} else {
+	 		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().distanceUnits){
+	 			dist = (dist/1000).format("%1.1f"); //km
+	 		}else{
+	 			dist = (dist * 0.000621371).format("%1.1f"); //miles
+	 		}
+	 	}
+ 		return dist;
+}
+
+//Seconds to minutes and seconds
 function minsec(secs){
 	var min = 0;
 	if (secs > 60){
@@ -665,11 +718,7 @@ class SportMonitor extends App.AppBase {
         	alt = 0.0;
         	dispElev = 0;
      	} else {
-     		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().elevationUnits){
-     			dispElev = alt.format("%i"); //m
-     		}else{
-     			dispElev = (alt * 3.28084).format("%i"); //feet
-     		}
+     		dispElev = convertElevation(alt);
      	}
      	
      	if (trainingEffect == null){
@@ -686,76 +735,33 @@ class SportMonitor extends App.AppBase {
      		asc = 0.0;
      		dispAsc = "0";
      	} else {
-     		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().elevationUnits){
-     			dispAsc = asc.format("%i"); //m
-     		}else{
-     			dispAsc = (asc * 3.28084).format("%i"); //feet
-     		}
+     		dispAsc = convertElevation(asc);
      	}
 
      	if (dsc == null){
      		dsc = 0;
      		dispDsc = "0";
      	}else {
-     		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().elevationUnits){
-     			dispDsc = dsc.format("%i"); //m
-     		}else{
-     			dispDsc = (dsc * 3.28084).format("%i"); //feet
-     		}
+     		dispDsc = convertElevation(dsc);
      	}
 
      	if (dist == null){
      		dist = 0;
      		dispDist = "0";
      	} else {
-     		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().distanceUnits){
-     			dispDist = (dist/1000).format("%1.1f"); //km
-     		}else{
-     			dispDist = (dist * 0.000621371).format("%1.1f"); //miles
-     		}
-     		//postMsg(Lang.format("dispDist: $1$",[dispDist]));
+     		dispDist = convertDistance(dist);
      	}
 
-     	if (speed == null or speed <= 0.0) {
-     		speed = 0;	//[m/s]
-     		dispSpeed = "0";
-     		dispPace = "0";     		
-     	} else {
-     	 	speed = speed + 0.0001; //Prevent div by 0 
-     		//postMsg(Lang.format("speed: $1$",[speed]));
-     		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().paceUnits){
-	     		speed = speed * 3.6; // [km/h]  
-	     		dispPace = (1.0/(speed*60)).format("%1.1f"); //[min/km]
-     		}else{
-     			speed = speed * 2.23694;// [mls/h]
-     			dispPace = (1.0/(speed*60)).format("%1.1f"); //[min/mls]
-     		}
-     		//postMsg(Lang.format("dispSpeed: $1$",[dispSpeed]));
-	     	if (speed > 99.0){
-				dispSpeed = speed.format("%d");
-			} else {
-	     		dispSpeed = speed.format("%1.1f");
-	     	}    		
-     	} 
+    	if (speed == null or speed <= 0.0){
+			speed = 0;
+	    }  		
+   		var tempSpeed = convertSpeed(speed);
+   		dispSpeed = tempSpeed[0];
+   		dispPace  = tempSpeed[1];		 
 
-     	if (avgSpeed == null or avgSpeed <= 0.0){
-     		dispAvgSpeed = "0";
-     		dispAvgPace = "0";
-     		avgSpeed = 0;
-     	}
-     	else{
-     		avgSpeed = avgSpeed + 0.0001; //Prevent div by 0 
-     		//postMsg(Lang.format("AvgSpeed: $1$",[avgSpeed]));
-     		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().paceUnits){
-	     		dispAvgSpeed = (avgSpeed*3.6).format("%1.1f");// [km/h]
-	     		dispAvgPace = (60/(avgSpeed*3.6)).format("%1.1f"); //[min/km]  
-     		}else{
-     			dispAvgSpeed = (avgSpeed*2.2369).format("%1.1f");// [mls/h]
-     			dispAvgPace = (60/(avgSpeed*2.2369)).format("%1.1f"); //[min/mls]
-     		}
-     		//dispAvgSpeed = dispAvgSpeed.format("%1.1f");
-     		//postMsg(Lang.format("dispAvgSpeed: $1$",[dispAvgSpeed]));
-     	}
+   		tempSpeed = convertSpeed(avgSpeed);
+   		dispAvgSpeed = tempSpeed[0];
+   		dispAvgPace  = tempSpeed[1];
      	   
      	batt = Sys.getSystemStats().battery;
      	//batt = 10;

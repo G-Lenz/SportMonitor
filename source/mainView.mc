@@ -351,14 +351,11 @@ class SMmainView extends Ui.View {
 			}
 		}
 		if (LapsDone > 0){
-     		dc.drawText(30, 148, Gfx.FONT_TINY, Lang.format("$1$, $2$, $3$",[timestr(LAPtime),((dist-LAPs[LapsDone-1][2])/1000.0).format("%1.1f"),(asc-LAPs[LapsDone-1][3]).format("%i")]), Gfx.TEXT_JUSTIFY_LEFT);
+     		dc.drawText(30, 148, Gfx.FONT_TINY, Lang.format("$1$, $2$, $3$",[timestr(LAPtime),convertDistance(dist-LAPs[LapsDone-1][2]),convertElevation(asc-LAPs[LapsDone-1][3])]), Gfx.TEXT_JUSTIFY_LEFT);
      	}
      	else{
-     		dc.drawText(30, 148, Gfx.FONT_TINY, Lang.format("$1$, $2$, $3$",[timestr(LAPtime),(dist/1000.0).format("%1.1f"),asc.format("%i")]), Gfx.TEXT_JUSTIFY_LEFT);
-     	}
-     	//TODO catch 0, 
-     	//TODO Units
-     	
+     		dc.drawText(30, 148, Gfx.FONT_TINY, Lang.format("$1$, $2$, $3$",[timestr(LAPtime),convertDistance(dist),convertElevation(asc)]), Gfx.TEXT_JUSTIFY_LEFT);
+     	}     	
 	} //! HRbarMain
 	
 	
