@@ -123,9 +123,11 @@ function postMem(identifier){
 
 var LAPs = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];//0...5
 var LapsDone = 0;
+var overrun = 0;
 function addLap(){
 	if (LapsDone > 5){
-		postMsg("copyLap");
+		overrun = 1;
+		//postMsg("copyLap");
 		LAPs[0] = LAPs[1];
 		LAPs[1] = LAPs[2];
 		LAPs[2] = LAPs[3];
@@ -147,7 +149,13 @@ function addLap(){
 }
 function getLap(lap){
 	if (lap == 0){
-		return Lang.format("$1$: $2$, $3$, $4$",[LAPs[lap][0],timestr(LAPs[lap][1]), convertDistance(LAPs[lap][2]), convertElevation(LAPs[lap][3]) ]);
+		var ln = "";
+		if (overrun > 0){
+			ln = "-";
+		}else{
+			ln = LAPs[lap][0];
+		}
+		return Lang.format("$1$: $2$, $3$, $4$",[ln,timestr(LAPs[lap][1]), convertDistance(LAPs[lap][2]), convertElevation(LAPs[lap][3]) ]);
 	}else{
 		return Lang.format("$1$: $2$, $3$, $4$",[LAPs[lap][0],timestr(LAPs[lap][1]-LAPs[lap-1][1]),  convertDistance(LAPs[lap][2]-LAPs[lap-1][2]), convertElevation(LAPs[lap][3]-LAPs[lap-1][3]) ]);
 	}
