@@ -14,7 +14,7 @@ using Toybox.Math as Math;
 
 var session = null;
 
-var Version = "0.604_test";
+var Version = "0.605_test";
 
 var sensorInfo = null;
 var activityInfo = null;
@@ -93,7 +93,7 @@ var Sport = null;
     
 var width = 218;
 var height = 218;
-var xCenter = 109; //109
+var xCenter = 109;
 var yCenter = 109;
 //Strings
 var AppName = "";

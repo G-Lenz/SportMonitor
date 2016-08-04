@@ -350,6 +350,7 @@ class SMmainView extends Ui.View {
 				dc.drawText(15, (55 + i*15 ), Gfx.FONT_TINY, getLap(i), Gfx.TEXT_JUSTIFY_LEFT);
 			}
 		}
+		//Bottom Line, actual LAP
 		if (LapsDone > 0){
      		dc.drawText(30, 148, Gfx.FONT_TINY, Lang.format("$1$, $2$, $3$",[timestr(LAPtime),convertDistance(dist-LAPs[LapsDone-1][2]),convertElevation(asc-LAPs[LapsDone-1][3])]), Gfx.TEXT_JUSTIFY_LEFT);
      	}
