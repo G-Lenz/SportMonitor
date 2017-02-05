@@ -503,7 +503,7 @@ class SportMonitor extends App.AppBase {
     	Sensor.setEnabledSensors([]);
     }
         
-    function onStart() {
+    function onStart(state) {
 		startGPS();
 		startSensor(); 
         session = null;
@@ -583,7 +583,7 @@ class SportMonitor extends App.AppBase {
        	discardRecording();
 	}
 	
-    function onStop() {
+    function onStop(state) {
         if (BacklightOn == true){
         	attention.backlight( false );
         }
