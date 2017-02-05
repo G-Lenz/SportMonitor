@@ -673,49 +673,51 @@ class SportMonitor extends App.AppBase {
 		HRcol = fgColor;
 		HRcolbg = bgColor;
 
-		if (hr < z1bpm){
-			HRzone = 0;
-			HRcolbg = Gfx.COLOR_BLUE;
-			tz0 = tz0+1;
-		}
-		else if (hr >= z1bpm and hr < z2bpm){
-			HRzone = 1.0+((hr-z1bpm.toFloat())/(z2bpm.toFloat()-z1bpm));
-			//postMsg(Lang.format("hr diff: $1$",[(hr.toFloat()-z1bpm)/(z2bpm-z1bpm)]));
- 		 	if (HRzone > 1.9) {
-    			HRzone = 1.9;
-  			}
-  			HRcolbg = Gfx.COLOR_GREEN;
-  			tz1 = tz1+1;
-		}
-		else if (hr >= z2bpm and hr < z3bpm){
-			  HRzone = 2.0+((hr-z2bpm.toFloat())/(z3bpm.toFloat()-z2bpm));   
-			  if (HRzone > 2.9) {
-			    HRzone = 2.9;
-			  }
-			  HRcolbg = Gfx.COLOR_YELLOW;
-			  tz2 = tz2+1;
-		}
-		else if (hr >= z3bpm and hr < z4bpm){
-			  HRzone = 3.0+((hr-z3bpm.toFloat())/(z4bpm.toFloat()-z3bpm));
-			  if (HRzone > 3.9) {
-			    HRzone = 3.9;
-			  }
-			  HRcolbg = Gfx.COLOR_DK_GREEN;
-			  tz3 = tz3+1;
-		}
-		else if (hr >= z4bpm and hr < z5bpm){
-			  HRzone = 4.0+((hr-z4bpm.toFloat())/(z5bpm.toFloat()-z4bpm));
-			  if (HRzone > 4.9) {
-			    HRzone = 4.9;
-			  }
-			  HRcolbg = Gfx.COLOR_ORANGE;
-			  tz4 = tz4+1;
-		}
-		else if (hr >= z5bpm){
-  			HRzone = 5.0+((hr-z5bpm.toFloat())/(maxHR.toFloat()-z5bpm));
-			  HRcolbg = Gfx.COLOR_RED;
-			  tz5 = tz5+1;
-		}
+		if (elaTime > 0){ //Only Count if activity is running
+			if (hr < z1bpm){
+				HRzone = 0;
+				HRcolbg = Gfx.COLOR_BLUE;
+				tz0 = tz0+1;
+			}
+			else if (hr >= z1bpm and hr < z2bpm){
+				HRzone = 1.0+((hr-z1bpm.toFloat())/(z2bpm.toFloat()-z1bpm));
+				//postMsg(Lang.format("hr diff: $1$",[(hr.toFloat()-z1bpm)/(z2bpm-z1bpm)]));
+	 		 	if (HRzone > 1.9) {
+	    			HRzone = 1.9;
+	  			}
+	  			HRcolbg = Gfx.COLOR_GREEN;
+	  			tz1 = tz1+1;
+			}
+			else if (hr >= z2bpm and hr < z3bpm){
+				  HRzone = 2.0+((hr-z2bpm.toFloat())/(z3bpm.toFloat()-z2bpm));   
+				  if (HRzone > 2.9) {
+				    HRzone = 2.9;
+				  }
+				  HRcolbg = Gfx.COLOR_YELLOW;
+				  tz2 = tz2+1;
+			}
+			else if (hr >= z3bpm and hr < z4bpm){
+				  HRzone = 3.0+((hr-z3bpm.toFloat())/(z4bpm.toFloat()-z3bpm));
+				  if (HRzone > 3.9) {
+				    HRzone = 3.9;
+				  }
+				  HRcolbg = Gfx.COLOR_DK_GREEN;
+				  tz3 = tz3+1;
+			}
+			else if (hr >= z4bpm and hr < z5bpm){
+				  HRzone = 4.0+((hr-z4bpm.toFloat())/(z5bpm.toFloat()-z4bpm));
+				  if (HRzone > 4.9) {
+				    HRzone = 4.9;
+				  }
+				  HRcolbg = Gfx.COLOR_ORANGE;
+				  tz4 = tz4+1;
+			}
+			else if (hr >= z5bpm){
+	  			HRzone = 5.0+((hr-z5bpm.toFloat())/(maxHR.toFloat()-z5bpm));
+				  HRcolbg = Gfx.COLOR_RED;
+				  tz5 = tz5+1;
+			}
+		}//elaTime>0
 		       
      	if (Kcal == null){
      		Kcal = 0;
