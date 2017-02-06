@@ -17,7 +17,7 @@ class SMstartView extends Ui.View {
 	var strExit = null;
     function initialize() {
         View.initialize();
-        postMsg("Startview: initView");
+        //postMsg("Startview: initView");
     }
         
     //! Load your resources here
@@ -87,15 +87,21 @@ class SMstartView extends Ui.View {
      	var s2 = 155;
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
         dc.drawText(s1, 70, Gfx.FONT_SMALL, "GPS:", Gfx.TEXT_JUSTIFY_LEFT);
-        if (acc < 3){
-        	dc.setColor(Gfx.COLOR_DK_RED, Gfx.COLOR_WHITE);
-        	dc.drawText(s2, 70, Gfx.FONT_SMALL, "wait" , Gfx.TEXT_JUSTIFY_LEFT);
-        	dc.drawText(s2+40, 70, Gfx.FONT_SMALL, acc, Gfx.TEXT_JUSTIFY_LEFT);
-        }else{
-        	dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_WHITE);
-        	dc.drawText(s2, 70, Gfx.FONT_SMALL, "ok: ", Gfx.TEXT_JUSTIFY_LEFT);
-        	dc.drawText(s2+27, 70, Gfx.FONT_SMALL, acc, Gfx.TEXT_JUSTIFY_LEFT);
-        }
+        //if (App.getApp().getGPSon()){
+	        if (acc < 3){
+	        	dc.setColor(Gfx.COLOR_DK_RED, Gfx.COLOR_WHITE);
+	        	dc.drawText(s2, 70, Gfx.FONT_SMALL, "wait" , Gfx.TEXT_JUSTIFY_LEFT);
+	        	dc.drawText(s2+40, 70, Gfx.FONT_SMALL, acc, Gfx.TEXT_JUSTIFY_LEFT);
+	        }else{
+	        	dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_WHITE);
+	        	dc.drawText(s2, 70, Gfx.FONT_SMALL, "ok: ", Gfx.TEXT_JUSTIFY_LEFT);
+	        	dc.drawText(s2+27, 70, Gfx.FONT_SMALL, acc, Gfx.TEXT_JUSTIFY_LEFT);
+	        }
+        //}
+        //else{
+        //		dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_WHITE);
+	    //    	dc.drawText(s2, 70, Gfx.FONT_SMALL, "OFF", Gfx.TEXT_JUSTIFY_LEFT);
+        //}
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
         dc.drawText(s1, 90, Gfx.FONT_SMALL, "HR:", Gfx.TEXT_JUSTIFY_LEFT);
         if (HR == null){

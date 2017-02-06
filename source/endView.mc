@@ -36,7 +36,8 @@ class SMendView extends Ui.View {
         dc.drawText(109, 15, Gfx.FONT_XTINY, Lang.format("$1$ $2$",[AppName,Version]), Gfx.TEXT_JUSTIFY_CENTER);
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
         dc.drawText(30, 30, Gfx.FONT_XTINY, Lang.format("Sport: $1$",[Sport.getSport()[0]]), Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(20, 45, Gfx.FONT_XTINY, Lang.format("Batt: $1$ -> $2$, $3$min, $4$%/hr",[startBatt,batt,duration,perzPerHour]), Gfx.TEXT_JUSTIFY_LEFT);    
+        dc.drawText(20, 45, Gfx.FONT_XTINY, Lang.format("Bat: $1$ -> $2$, $3$min, $4$%/hr",[startBatt.format("%2.1f"),batt.format("%2.1f"),duration,perzPerHour]), Gfx.TEXT_JUSTIFY_LEFT);
+        //dc.drawText(20, 45, Gfx.FONT_XTINY, Lang.format("Batt: $1$ -> $2$, $3$min, $4$%/hr",[startBatt,batt,duration,perzPerHour]), Gfx.TEXT_JUSTIFY_LEFT);    
 	    dc.drawText(5, 75, Gfx.FONT_XTINY, Lang.format("TrainingEffect: $1$",[trainingEffect]), Gfx.TEXT_JUSTIFY_LEFT);
 	    if(activityInfo != null && asc != null){
 	    	dc.drawText(2, 90, Gfx.FONT_XTINY, Lang.format("Dist: $1$, Time: $2$, asc: $3$",[dispDist,timestr(activityInfo.elapsedTime),dispAsc]), Gfx.TEXT_JUSTIFY_LEFT);
