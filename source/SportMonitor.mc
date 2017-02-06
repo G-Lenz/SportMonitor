@@ -14,7 +14,7 @@ using Toybox.Math as Math;
 
 var session = null;
 
-var Version = "0.605_test";
+var Version = "0.606";
 
 var sensorInfo = null;
 var activityInfo = null;
@@ -160,22 +160,22 @@ function getLap(lap){
 }
 
 //Convert Speed to selected unit
-function convertSpeed(speed){ //[m/s]
+function convertSpeed(lspeed){ //[m/s]
 	var outSpeed = 0;
 	var outPace = 0;
 
-    if (speed == null or speed <= 0.0){
+    if (lspeed == null or lspeed <= 0.0){
 		outSpeed = "0";
      	outPace = "0";
      }
      else{
-     	speed = speed + 0.0001; //Prevent div by 0 
+     	//lspeed = lspeed + 0.0001; //Prevent div by 0 
 		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().paceUnits){
-	    	outSpeed = (speed*3.6);// [km/h]
-	 		outPace = (60/(speed*3.6)).format("%1.1f"); //[min/km]  
+	    	outSpeed = (lspeed*3.6);// [km/h]
+	 		outPace = (60/(lspeed*3.6)).format("%1.1f"); //[min/km]  
 	 	}else{
-	 		outSpeed = (speed*2.2369);// [mls/h]
-	 		outPace = (60/(speed*2.2369)).format("%1.1f"); //[min/mls]
+	 		outSpeed = (lspeed*2.2369);// [mls/h]
+	 		outPace = (60/(lspeed*2.2369)).format("%1.1f"); //[min/mls]
 	 	}
 	 	if (outSpeed > 99.0){
 			outSpeed = outSpeed.format("%d");
@@ -186,30 +186,30 @@ function convertSpeed(speed){ //[m/s]
  	return [outSpeed,outPace];
 }
      		
-function convertElevation(elev){
-     	if (elev == null){
-     		elev = "0";
+function convertElevation(lelev){
+     	if (lelev == null){
+     		lelev = "0";
      	}else{
 	 		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().elevationUnits){
-	 			elev = elev.format("%i"); //m
+	 			lelev = lelev.format("%i"); //m
 	 		}else{
-	 			elev = (elev * 3.28084).format("%i"); //feet
+	 			lelev = (lelev * 3.28084).format("%i"); //feet
 	 		}
  		}
- 		return elev;
+ 		return lelev;
 }
 
-function convertDistance(dist){
-     	if (dist == null){
+function convertDistance(ldist){
+     	if (ldist == null){
      		disp = "0";
      	} else {
 	 		if(Sys.UNIT_METRIC == Sys.getDeviceSettings().distanceUnits){
-	 			dist = (dist/1000).format("%1.1f"); //km
+	 			ldist = (ldist/1000).format("%1.1f"); //km
 	 		}else{
-	 			dist = (dist * 0.000621371).format("%1.1f"); //miles
+	 			ldist = (ldist * 0.000621371).format("%1.1f"); //miles
 	 		}
 	 	}
- 		return dist;
+ 		return ldist;
 }
 
 //Seconds to minutes and seconds
